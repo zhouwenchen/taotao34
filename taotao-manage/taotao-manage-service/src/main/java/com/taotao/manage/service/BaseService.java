@@ -134,6 +134,14 @@ public abstract class BaseService<T extends BasePojo>{
 		return mapper.delete(record);
 	}
 	
+	/**
+	 * 查询分页数据，并根据某个字段进行排序
+	 * @param page 分页
+	 * @param rows 每页显示条数
+	 * @param clazz 
+	 * @param orderByClause 排序字段
+	 * @return
+	 */
 	public PageInfo<T> queryPageListByOrderBy(Integer page, Integer rows, Class<T> clazz, String orderByClause) {
 		// 设置分页参数
 		PageHelper.startPage(page, rows);
@@ -143,12 +151,3 @@ public abstract class BaseService<T extends BasePojo>{
 		return new PageInfo<T>(list);
 	}
 }
-
-
-
-
-
-
-
-
-

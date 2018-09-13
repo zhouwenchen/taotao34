@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.pagehelper.PageInfo;
+import com.taotao.manage.pojo.EasyUIResult;
 import com.taotao.manage.pojo.Item;
 import com.taotao.manage.service.ItemService;
 
@@ -37,6 +39,22 @@ public class ItemController {
 			return ResponseEntity.status(HttpStatus.CREATED).build();
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-
 	}
+	
+	/**
+	 * 查询商品的详细列表，根据更新时间倒序排序
+	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<EasyUIResult> queryItemList(@RequestParam("page")Integer page,
+			@RequestParam("rows")Integer rows){
+		try {
+			PageInfo<Item> pageInfo = itemService.queryPageListByOrderBy(page, rows, Item.class, "updated desc");
+			EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
+			return ResponseEntity.ok(easyUIResult);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+	
 }
