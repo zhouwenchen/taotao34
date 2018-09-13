@@ -14,7 +14,7 @@ import com.taotao.manage.pojo.ItemCat;
 import com.taotao.manage.service.ItemCatService;
 
 /**
- * 商品类目的Controller
+ * 锟斤拷品锟斤拷目锟斤拷Controller
  */
 @RequestMapping(value="/item/cat")
 @Controller
@@ -26,7 +26,10 @@ public class ItemCatController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<ItemCat>> queryItemCatByParentId(@RequestParam(value="id",defaultValue="0")Long parentId){
 		try {
-			List<ItemCat> itemCats = itemCatService.queryItemCatByParentId(parentId);
+//			List<ItemCat> itemCats = itemCatService.queryItemCatByParentId(parentId);
+			ItemCat record = new ItemCat();
+			record.setParentId(parentId);
+			List<ItemCat> itemCats = itemCatService.queryListByWhere(record);
 			if(itemCats == null || itemCats.isEmpty()){
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 			}

@@ -12,9 +12,9 @@ import com.taotao.manage.pojo.ItemCat;
  * 商品类目的Service
  */
 @Service
-public class ItemCatService {
+public class ItemCatService extends BaseService<ItemCat>{
 	
-	@Autowired
+//	@Autowired
 	private ItemCatMapper itemCatMapper;
 	
 	/**
@@ -22,10 +22,11 @@ public class ItemCatService {
 	 * @param parentId 父节点的ID
 	 * @return 指定父节点下的商品类目的集合
 	 */
-	public List<ItemCat> queryItemCatByParentId(Long parentId){
-		ItemCat record = new ItemCat();
-		record.setParentId(parentId);
-		List<ItemCat> itemCats = itemCatMapper.select(record);
-		return itemCats;
-	}
+//	public List<ItemCat> queryItemCatByParentId(Long parentId){
+//		ItemCat record = new ItemCat();
+//		record.setParentId(parentId);
+//		List<ItemCat> itemCats = itemCatMapper.select(record);
+//		return itemCats;
+//	}
+	
 }
