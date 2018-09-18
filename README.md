@@ -161,11 +161,11 @@ item       |Item        |商品的信息
 > 请求方式：GET<br>
 请求URL ：[http://manage.taotao.com/rest/item/param/itemId](#)
 
-### 4.2 请求参数
+### 6.2 请求参数
 字段       |字段类型       |字段说明
 ------------|-----------|-----------
 itemId       |long        |商品的类目ID
-### 4.3返回结果
+### 6.3返回结果
 ```
 {
     "created":1433476785000,
@@ -202,4 +202,65 @@ itemId       |long        |商品的类目ID
 
 
 ## 搭建前台系统
-### 
+### 前台获取商品分类的数据
+[http://manage.taotao.com/rest/api/item/cat?callback=category.getDataService](#)
+解决了跨域的问题
+```
+{
+    "data":[
+        {
+            "u":"/products/1.html",
+            "n":"<a href='/products/1.html'>图书、音像、电子书刊</a>",
+            "i":[
+                {
+                    "u":"/products/2.html",
+                    "n":"电子书刊",
+                    "i":[
+                        "/products/3.html|电子书",
+                        "/products/4.html|网络原创",
+                        "/products/5.html|数字杂志",
+                        "/products/6.html|多媒体图书"
+                    ]
+                },
+	......
+```
+
+### 8.前台系统的广告位的显示
+## 引申出内容分类的管理和内容管理
+
+> 请求方式：GET<br>
+请求URL ：[http://manage.taotao.com/rest/content/category/parentId](#)
+
+### 8.2 请求参数
+字段       |字段类型       |字段说明
+------------|-----------|-----------
+parentId       |long        |父节点的ID
+### 8.3返回结果
+```
+[
+    {
+        "created":1428051098000,
+        "updated":1428051100000,
+        "id":30,
+        "parentId":0,
+        "name":"淘淘商城",
+        "status":1,
+        "sortOrder":1,
+        "isParent":true,
+        "state":"closed",
+        "text":"淘淘商城"
+    }
+]
+```
+
+## 9 新增节点
+> 请求方式：POST<br>
+请求URL ：[http://manage.taotao.com/rest/content/category](#)
+请求参数：
+字段       |字段类型       |字段说明
+------------|-----------|-----------
+parentId       |long        |父节点的ID
+name       |string        |新增节点的名称
+1. 新增内容分类节点的数据
+2. 确保该节点的父节点的isparent为true
+
