@@ -256,6 +256,7 @@ parentId       |long        |父节点的ID
 ## 9 新增节点
 > 请求方式：POST<br>
 请求URL ：[http://manage.taotao.com/rest/content/category](#)
+
 请求参数：
 字段       |字段类型       |字段说明
 ------------|-----------|-----------
