@@ -262,6 +262,8 @@ parentId       |long        |父节点的ID
 ------------|-----------|-----------
 parentId       |long        |父节点的ID
 name       |string        |新增节点的名称
+
+### 注意：
 1. 新增内容分类节点的数据
 2. 确保该节点的父节点的isparent为true
 
