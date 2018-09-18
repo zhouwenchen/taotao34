@@ -8,6 +8,7 @@ import com.taotao.manage.mapper.ItemMapper;
 import com.taotao.manage.pojo.Item;
 import com.taotao.manage.pojo.ItemDesc;
 import com.taotao.manage.pojo.ItemParam;
+import com.taotao.manage.pojo.ItemParamItem;
 
 /**
  * 商品类目的Service
@@ -20,7 +21,7 @@ public class ItemService extends BaseService<Item>{
 	@Autowired
 	private ItemDescService itemDescService;
 	@Autowired
-	private ItemParamService itemParamService;
+	private ItemParamItemService itemParamItemService;
 	/**
 	 * 添加商品详情和商品描述的信息
 	 * @param item  商品详情
@@ -41,11 +42,11 @@ public class ItemService extends BaseService<Item>{
 		Integer count2 = itemDescService.save(itemDesc);
 		
 		// 3.商品规格参数数据
-		ItemParam itemParam = new ItemParam();
-		itemParam.setId(null);
-		itemParam.setItemCatId(item.getId());
-		itemParam.setParamData(itemParams);
-		Integer count3 = itemParamService.save(itemParam);
+		ItemParamItem itemParamItem = new ItemParamItem();
+		itemParamItem.setId(null);
+		itemParamItem.setItemId(item.getId());
+		itemParamItem.setParamData(itemParams);
+		Integer count3 = itemParamItemService.save(itemParamItem);
 		
 		return count1.intValue() == 1 && count2.intValue() == 1 && count3.intValue() == 1;
 	}
@@ -54,20 +55,25 @@ public class ItemService extends BaseService<Item>{
 	 * 更新商品信息
 	 * @param item 商品信息
 	 * @param desc 商品描述信息
+	 * @param itemParams 商品的规格参数的数据
 	 * @return
 	 */
-	public boolean updateItem(Item item, String desc) {
+	public boolean updateItem(Item item, String desc,String itemParamsdata) {
 		// 强制设置不能更新的字段
 		item.setCreated(null);
 		item.setStatus(null);
 		Integer count1 = super.updateSelective(item);
 		
+		// 2.商品的描述
 		ItemDesc itemDesc = new ItemDesc();
 		itemDesc.setItemId(item.getId());
 		itemDesc.setItemDesc(desc);
 		Integer count2 = itemDescService.updateSelective(itemDesc);
 		
-		return count1.intValue() == 1 && count2.intValue() == 1;
+		// 3.商品的规格参数的数据
+		Integer count3 = itemParamItemService.updateItemParamItem(item.getId(),itemParamsdata);
+		
+		return count1.intValue() == 1 && count2.intValue() == 1 && count3.intValue() == 1;
 	}
 	
 }

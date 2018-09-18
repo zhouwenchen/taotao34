@@ -176,3 +176,28 @@ itemId       |long        |商品的类目ID
 }
 ```
 
+### 7.更新商品的信息
+1. 先加载商品的详情信息
+2. 加载商品的描述信息
+[http://manage.taotao.com/rest/item/desc/143771131488385](#)
+```
+{
+    "created":1537238230000,
+    "updated":1537240520000,
+    "itemId":143771131488385,
+    "itemDesc":"出现异常的数据"
+}
+```
+3. 根据商品类目的id，加载商品的规格参数的数据
+[http://manage.taotao.com/rest/item/param/item/143771131488385](#)
+```
+{
+    "created":1537240473000,
+    "updated":1537240526000,
+    "id":13,
+    "itemId":143771131488385,
+    "paramData":"[{"group":"g1","params":[{"k":"aa","v":"a"},{"k":"bb","v":"b"},{"k":"cc","v":"c"}]},{"group":"g2","params":[{"k":"ad","v":"ad"},{"k":"sd","v":"sd"}]},{"group":"g3","params":[{"k":"sdd","v":"sdd"},{"k":"sdfs","v":"sdfs"},{"k":"dfg","v":"dfg"}]}]"
+}
+```
+
+

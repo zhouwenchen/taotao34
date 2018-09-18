@@ -71,10 +71,10 @@ public class ItemController {
 	}
 	
 	/**
-	 * 更新商品的信息
+	 * 更新商品的信息,描述，和规格参数的
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<Void> updateItem(Item item,@RequestParam("desc") String desc){
+	public ResponseEntity<Void> updateItem(Item item,@RequestParam("desc") String desc,String itemParams){
 		LOGGER.info("=======更新商品的信息开始=========item = {},描述信息 desc = {}",item, desc);
 		try {
 			// 1. 验证参数的有效性
@@ -85,7 +85,7 @@ public class ItemController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 			}
 			// 2. 更新商品，描述信息
-			boolean b = itemService.updateItem(item,desc);
+			boolean b = itemService.updateItem(item,desc,itemParams);
 			// 3. 响应请求信息
 			if(b){
 				if(LOGGER.isDebugEnabled()){
