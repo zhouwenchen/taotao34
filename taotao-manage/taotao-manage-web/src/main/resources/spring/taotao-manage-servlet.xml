@@ -10,15 +10,16 @@
 	<!-- 定义注解驱动 -->
 	<!-- <mvc:annotation-driven/> -->
 	
+	<!-- 定义消息转化器 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<constructor-arg index="0" value="UTF-8" />
 			</bean>
-<!-- 			<bean -->
-<!-- 				class="com.taotao.common.bean.spring.exetend.converter.json.CallbackMappingJackson2HttpMessageConverter"> -->
-<!-- 				<property name="callbackName" value="callback" /> -->
-<!-- 			</bean> -->
+			<bean
+				class="com.taotao.common.bean.spring.exetend.converter.json.CallbackMappingJackson2HttpMessageConverter">
+				<property name="callbackName" value="callback" />
+			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
